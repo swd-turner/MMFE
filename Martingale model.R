@@ -1,5 +1,3 @@
-##
-
 library(reservoir)  # load reservoir package for bootcast function
 
 load("example_inflow")  # load example inflow time series
@@ -12,7 +10,7 @@ Q_ <- window(Q, start = c(startYr, 1), end = c(endYr, 12))
 
 # SET PARAMETERS
 H = 12  # 12 month forecast horizon
-error = 0.5  # "injected error" = 1 (i.e., same as input forecast)
+error = 0.5  # "injected error"
 
 # GENERATE FORECASTS FOR OBSERVED INFLOW USING KNN BOOTSTRAP METHOD
 fcast <- bootcast(Q, H = H,
@@ -70,7 +68,11 @@ Martingale <- function(Q, H, error, fcast){
   return(fcast_rep)
 }
 
+## CALL THE MARTINGALE MODEL
 fcast_ <- Martingale(Q_, H, error = error, fcast = fcast)
+
+
+## PLOT RESULTS...
 
 layout(1:2)
 
